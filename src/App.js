@@ -105,9 +105,9 @@ class App extends Component {
                             ))}
                         </ul>
                     </div>
-                    <div>
-                        <h3>Favourites</h3>
-                        <ul id="favourites">
+                    <div id="favourites">
+                        <h2>Favourites</h2>
+                        <ul>
                             {this.state.favouritedItemIndexes.map(
                                 (value, index) => (
                                     <WasteItem
@@ -130,17 +130,31 @@ class App extends Component {
 }
 
 const Header = styled.header`
-    height: 80px;
+    margin-top: 10px;
+    height: 100px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: blue;
+    background-image: linear-gradient(to right, #1f5084, #278553);
     color: white;
 `;
 
 const Content = styled.div`
-    margin: 10px;
+    #favourites,
+    #search-results {
+        padding: 10px;
+    }
+
+    #favourites {
+        background-color: #f7fefa;
+        h2 {
+            color: #2b985e;
+            margin-bottom: 15px;
+        }
+
+        min-height: 200px;
+    }
 `;
 
 export default App;

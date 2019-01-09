@@ -5,10 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Icon = ({ icon, color, fontSize }) => {
     const StyledIcon = styled(FontAwesomeIcon)`
         color: ${color};
-        font-size: 10px;
+        font-size: ${fontSize}px;
+        vertical-align: top;
     `;
 
-    return <StyledIcon icon="star" />;
+    return <StyledIcon icon={icon} />;
 };
 
 export default Icon;

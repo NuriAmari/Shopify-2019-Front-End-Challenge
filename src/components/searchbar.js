@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import Icon from './icon';
 
 const SearchBar = ({ updateForm, clickHandler }) => (
     <Wrapper>
         <input type="text" onChange={updateForm} name="search-bar" />
-        <button onClick={clickHandler}>S</button>
+        <button onClick={clickHandler}>
+            <Icon fontSize={18} icon="search" color="white" />
+        </button>
     </Wrapper>
 );
 
@@ -14,18 +17,22 @@ const Wrapper = styled.div`
     padding: 10px;
 
     button {
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         background-color: green;
         color: white;
+        border: none;
+        border-radius: 2px;
     }
 
     input {
         flex-grow: 1;
-        height: 30px;
-        border: 1px solid #black;
+        height: 40px;
+        border: 1px solid gray;
         margin-right: 10px;
-        padding-left: 5px;
+        padding-left: 10px;
+        font-size: 16px;
+        border-radius: 2px;
     }
 `;
 

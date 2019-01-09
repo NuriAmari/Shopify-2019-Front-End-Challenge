@@ -11,8 +11,12 @@ function htmlDecode(body) {
 const WasteItem = ({ favourited, toggleFavourite, title, body }) => (
     <Wrapper>
         <div>
-            <div onClick={toggleFavourite}>
-                <Icon color={favourited ? 'green' : 'gray'} icon="star" />
+            <div className="icon-wrapper" onClick={toggleFavourite}>
+                <Icon
+                    color={favourited ? 'green' : 'gray'}
+                    icon="star"
+                    fontSize={11}
+                />
             </div>
             {title}
         </div>
@@ -24,9 +28,14 @@ const Wrapper = styled.div`
     display: grid;
     grid-template-columns: 50% 50%;
 
-    FontAwesomeIcon {
-        color: red;
+    margin-bottom: 15px;
+
+    .icon-wrapper {
+        display: inline;
+        padding: 5px;
     }
+
+    font-size: 14px;
 `;
 
 export default WasteItem;
