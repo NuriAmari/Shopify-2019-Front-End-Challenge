@@ -15,6 +15,7 @@ class App extends Component {
         };
         this.updateForm = this.updateForm.bind(this);
         this.search = this.search.bind(this);
+        this.toggleFavourite = this.toggleFavourite.bind(this);
     }
 
     componentWillMount() {
@@ -60,6 +61,22 @@ class App extends Component {
         }
     }
 
+    toggleFavourite(itemIndex) {
+        console.log(`toggle: ${itemIndex}`);
+        let currentFavourites = this.state.favouritedItemIndexes;
+        if (currentFavourites.includes(itemIndex)) {
+            currentFavourites = currentFavourites.filter(
+                value => value !== itemIndex
+            );
+        } else {
+            currentFavourites.push(itemIndex);
+        }
+        this.setState(prevState => ({
+            ...prevState,
+            favouritedItemIndexes: currentFavourites,
+        }));
+    }
+
     render() {
         return (
             <div className="App">
@@ -75,7 +92,12 @@ class App extends Component {
                         <ul>
                             {this.state.searchHitIndexes.map((value, index) => (
                                 <WasteItem
-                                    favourited={false}
+                                    favourited={this.state.favouritedItemIndexes.includes(
+                                        value
+                                    )}
+                                    toggleFavourite={() =>
+                                        this.toggleFavourite(value)
+                                    }
                                     title={data[value].title}
                                     key={index}
                                     body={data[value].body}
@@ -90,9 +112,12 @@ class App extends Component {
                                 (value, index) => (
                                     <WasteItem
                                         favourited={true}
+                                        toggleFavourite={() =>
+                                            this.toggleFavourite(value)
+                                        }
                                         title={data[value].title}
                                         key={index}
-                                        listItems={[]}
+                                        body={data[value].body}
                                     />
                                 )
                             )}
