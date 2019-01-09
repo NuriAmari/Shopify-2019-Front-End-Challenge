@@ -1,28 +1,54 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import * as data from './data.json';
+import SearchBar from './components/searchbar';
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            searchTerm: null,
+            favouritedItemIndexes: [],
+        };
+        this.updateForm = this.updateForm.bind(this);
+    }
+
+    updateForm(event) {
+        this.setState(prevState => ({
+            ...prevState,
+            searchTerm: event.target.value,
+        }));
+    }
+
+    search() {}
+
     render() {
         return (
             <div className="App">
-                <header className="Toronto Waste Lookup">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <p>
-                        Edit <code>src/App.js</code> and save to reload.
-                    </p>
-                    <a
-                        className="App-link"
-                        href="https://reactjs.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Learn React
-                    </a>
-                </header>
+                <Header className="App">
+                    <h2>Toronto Waste Lookup</h2>
+                </Header>
+                <SearchBar
+                    clickHandler={this.search}
+                    updateForm={this.updateForm}
+                />
+                <div>
+                    <h3>Favourites</h3>
+                    <ul id="favourites">//</ul>
+                </div>
             </div>
         );
     }
 }
+
+const Header = styled.header`
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: blue;
+    color: white;
+`;
 
 export default App;
