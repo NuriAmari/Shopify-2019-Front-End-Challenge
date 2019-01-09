@@ -22,7 +22,7 @@ class App extends Component {
         // place all the keywords in a hashmap for quick lookup
         const map = new Map();
         for (let i = 0; i < data.length; i++) {
-            const keywords = data[i].keywords.split(' ');
+            const keywords = data[i].keywords.split(',');
             for (let j = 0; j < keywords.length; j++) {
                 const originalMatches = map.get(keywords[j]);
                 if (originalMatches === undefined) {
@@ -52,8 +52,19 @@ class App extends Component {
     }
 
     search() {
-        const results = this.state.keywordMatches.get(this.state.searchTerm);
-        if (results !== undefined) {
+        console.log('search');
+        let results = [];
+        const searchTerm = this.state.searchTerm;
+        for (const [keyword, indeces] of this.state.keywordMatches.entries()) {
+            if (keyword.includes(searchTerm)) {
+                for (let i = 0; i < indeces.length; i++) {
+                    if (!results.includes(indeces[i])) {
+                        results.push(indeces[i]);
+                    }
+                }
+            }
+        }
+        if (results.length !== 0) {
             this.setState(prevState => ({
                 ...prevState,
                 searchHitIndexes: results,
