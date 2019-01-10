@@ -51,12 +51,13 @@ class App extends Component {
         }));
     }
 
-    search() {
-        console.log('search');
+    search(event) {
+        event.preventDefault();
         let results = [];
         const searchTerm = this.state.searchTerm;
         for (const [keyword, indeces] of this.state.keywordMatches.entries()) {
             if (keyword.includes(searchTerm)) {
+                console.log(keyword);
                 for (let i = 0; i < indeces.length; i++) {
                     if (!results.includes(indeces[i])) {
                         results.push(indeces[i]);
@@ -73,7 +74,6 @@ class App extends Component {
     }
 
     toggleFavourite(itemIndex) {
-        console.log(`toggle: ${itemIndex}`);
         let currentFavourites = this.state.favouritedItemIndexes;
         if (currentFavourites.includes(itemIndex)) {
             currentFavourites = currentFavourites.filter(

@@ -3,15 +3,15 @@ import styled from 'styled-components';
 import Icon from './icon';
 
 const SearchBar = ({ updateForm, clickHandler }) => (
-    <Wrapper>
+    <Form onSubmit={clickHandler}>
         <input type="text" onChange={updateForm} name="search-bar" />
-        <button onClick={clickHandler}>
+        <button type="submit">
             <Icon fontSize={18} icon="search" color="white" />
         </button>
-    </Wrapper>
+    </Form>
 );
 
-const Wrapper = styled.div`
+const Form = styled.form`
     width: 100%;
     display: flex;
     padding: 10px;
